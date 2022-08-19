@@ -1,14 +1,18 @@
 
 import ShowGroups from '../hooks/ShowGroups'
 import ShowWishlists from '../hooks/ShowWishlists'
+import {Adauga} from '../context/AddGroup'
+import { useNavigate } from 'react-router-dom'
+
 const Profile=()=>{
-    //const[data,setData]=useState(exemplu);
-
-
-    
-    const testare=(e)=>{
-        console.log(e.target.innerText)
+    const navigate=useNavigate();
+    const AdaugareGrup=()=>{
+        Adauga()  
+        navigate('/Groups')
+          
     }
+
+
     return(
         <div className="profil">
             <label className="labelprofil">Salut X</label>
@@ -19,7 +23,7 @@ const Profile=()=>{
                 
                     <tr>
                         <th> Grupuri</th>
-                        <th><button>Grup nou</button></th>
+                        <th><button onClick={AdaugareGrup}>Grup nou</button></th>
                     </tr>
 
                     <ShowGroups/>
