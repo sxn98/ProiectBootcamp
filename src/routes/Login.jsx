@@ -9,6 +9,7 @@ const Login=()=>{
     const Inregistrarea=()=>{
         navigate('/SignIn')
     }
+
     return(
         <div className="login">
 

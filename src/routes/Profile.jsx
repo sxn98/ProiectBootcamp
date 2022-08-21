@@ -4,6 +4,7 @@ import ShowWishlists from '../hooks/ShowWishlists'
 import {Adauga} from '../context/AddGroup'
 import { useNavigate } from 'react-router-dom'
 
+
 const Profile=()=>{
     const navigate=useNavigate();
     const AdaugareGrup=()=>{
@@ -15,6 +16,7 @@ const Profile=()=>{
 
     return(
         <div className="profil">
+            
             <label className="labelprofil">Salut X</label>
 
             <div className="profilgrup">
