@@ -27,4 +27,27 @@
     width: 300px;
   }
 
+  .wishliststotal{
+    text-align: center;
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    width: 600px;
+    height: 100%;
+    align-items: center;
+    flex-direction: row;
+  }
 
+  .iteme{
+    margin: auto;
+    margin-top: 1em;
+    margin-left: 1em;
+    width: 300px;
+    height: 100%;
+    background-color: hsla(177, 70%, 41%, 0.75);
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }

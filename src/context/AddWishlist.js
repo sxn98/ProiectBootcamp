@@ -1,7 +1,8 @@
-import exemplu from '../exemplu.json'
+import exemplu from '../exempluwishlist.json'
 let i=1
 export function Adauga(){
-    exemplu.push({numegrup:"alt grup "+i})
+    
+    exemplu.push({numewish:"alt wishlist "+i})
     i++
     //console.log(exemplu)
     //console.log("asdf")

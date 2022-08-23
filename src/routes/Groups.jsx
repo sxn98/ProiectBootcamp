@@ -13,7 +13,6 @@ const Groups=()=>{
 
     return(
         <div className="grup">
-
                 <table className="tabelgrup">
                 
                     <tr>

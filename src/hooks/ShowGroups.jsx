@@ -5,12 +5,12 @@ import {Afiseaza} from '../context/AddGroup'
 const ShowGroups=()=>{
     let exemplu=Afiseaza()
     const[data,setData]=useState(exemplu);
-    console.log(exemplu)
-    console.log("12334")
+    //console.log(exemplu)
+   // console.log("12334")
 
     
     return(
-        
+
         <tbody>
         {data.map((grup)=>(
             <tr>
