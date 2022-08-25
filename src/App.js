@@ -8,6 +8,7 @@ import Login from './routes/Login';
 import SignIn from './routes/SignIn';
 import WithNav from './components/WithNav';
 import WithoutNav from './components/WithoutNav';
+import UsersGroup from './routes/UsersGroup';
 
 function App() {
 
@@ -36,6 +37,10 @@ function App() {
 
       <Route element={<WithNav/>}>
         <Route path="/WishLists" element={< WishLists />}/>
+      </Route>
+
+      <Route element={<WithNav/>}>
+        <Route path="/Groups/..." element={< UsersGroup />}/>
       </Route>
 
     </Routes>
