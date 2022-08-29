@@ -10,7 +10,7 @@ const UsersGroup=()=>{
     const navigate=useNavigate();
     const AdaugareUser=()=>{
         Adauga()  
-        navigate('/Groups/...')
+        navigate('/Groups/UsersGroup')
     }
     return(
         <div className="usersgroup">
