@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import {Afiseaza} from '../context/AddGroup'
+import {Afiseaza} from '../utils/AddGroup'
 import { useNavigate } from 'react-router-dom'
 
 const ShowGroups=()=>{
@@ -13,9 +13,9 @@ const ShowGroups=()=>{
    const AfisareGrupPersoane=(e)=>{
     navigate(`/Groups/${e.target.innerText}`)
     console.log(e.target.innerText)
-
-   }
     
+   }
+    console.log(exemplu)
     return(
 
         <tbody>

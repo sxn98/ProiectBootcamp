@@ -6,8 +6,8 @@ const ShowWishlistsItems=()=>{
     const[dataItem,setDataItem]=useState(exempluiteme);
 
     return(
-        <tbody>
-             <table className="tabelitemewishlist">
+        <table className="tabelitemewishlist">
+             <tbody>
              <tr>
                  <th>Iteme</th>
                  <th><button>Item nou</button></th>
@@ -18,8 +18,8 @@ const ShowWishlistsItems=()=>{
                 <td><button>Sterge</button></td>
             </tr>
         ))}
-        </table>
         </tbody>
+        </table>
 
     )
 }

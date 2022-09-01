@@ -1,5 +1,5 @@
 import ShowGroups from '../hooks/ShowGroups'
-import {Adauga} from '../context/AddGroup'
+import {Adauga} from '../utils/AddGroup'
 import { useNavigate } from 'react-router-dom'
 import '../css/Grup.css'
 const Groups=()=>{

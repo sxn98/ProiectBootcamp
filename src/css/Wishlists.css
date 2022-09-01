@@ -32,13 +32,13 @@
     padding: 15px;
     border-radius: 12px;
     display: flex;
-    width: 600px;
+    width: 1050px;
     height: 100%;
     align-items: center;
     flex-direction: row;
   }
 
-  .iteme{
+  .itemewishlist{
     margin: auto;
     margin-top: 1em;
     margin-left: 1em;
@@ -50,4 +50,30 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+  }
+
+  .iteme{
+    margin: auto;
+    margin-top: 1em;
+    margin-left: 1em;
+    width: 500px;
+    height: 100%;
+    background-color: hsla(177, 70%, 41%, 0.75);
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .adaugare{
+    padding: 20px;
+    margin-top:1em;
+    height: 100%;
+    width: 65%;
+    display:flex;
+    margin: auto;
+    flex-direction: column;
+
+   
+    
   }

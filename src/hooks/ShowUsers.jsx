@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import {Afiseaza} from '../context/AddGroup'
+import {Afiseaza} from '../utils/AddGroup'
 
 const ShowUsers=()=>{
     let exemplu=Afiseaza()

@@ -1,29 +1,27 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 const SignIn=()=>{
     const navigate=useNavigate();
 
     async function Inregistrarea(){
-        
-        console.log(email,password,dob,name,phone)
-        let item ={email,password,dob,name,phone}
-        let result=await fetch("http://ec2-18-217-234-99.us-east-2.compute.amazonaws.com:8080/v1/register",{
-            method:'POST',
-            headers:{
-                "Content-Type":"application/json",
-                "Accept":"application/json"
-            },
-            body:JSON.stringify(item)
-        });
-       
-        result=await result.json()
-        console.log(item)
-        console.log(result)
-        //localStorage.setItem(JSON.stringify(result))
-        navigate('/')
+    
+        await axios.post('http://ec2-18-217-234-99.us-east-2.compute.amazonaws.com:8080/v1/register',{
+            email:email,
+            password:password,
+            dob:dob,
+            name:name,
+            phone:phone
+        }).then(response=>{
+            console.log(response.data)
+            
+        }).catch(err=>{
+            console.log(err.message)
+            setEroare(err.message)
+        })
         
     }
-
+    const[eroare,setEroare]=useState("")
     const[name,setName]=useState("")
     const[password,setPassword]=useState("")
     const[email,setEmail]=useState("")
@@ -39,6 +37,7 @@ const SignIn=()=>{
             <input type="text" placeholder="Date of Birth" id="Sdob" onChange={(e)=>setDob(e.target.value)}></input>
             <input type="text" placeholder="Phone Number" id="Sphone" onChange={(e)=>setPhone(e.target.value)}></input>
             <button id="ButtonInregistrare" onClick={Inregistrarea}>Inregistreaza-te</button>
+            <label >{eroare}</label>
 
             
             

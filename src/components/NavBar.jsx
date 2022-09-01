@@ -16,6 +16,7 @@ function Navbar(){
                 <li>
                     <CustomLink to="/WishLists">WishList-uri</CustomLink>
                 </li>
+                
             </ul>
         </nav>
     )

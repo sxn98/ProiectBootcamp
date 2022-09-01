@@ -1,48 +1,38 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import axios from "axios";
 
 const Login=()=>{
     const navigate=useNavigate();
 
-   const Logare=()=>{
+   async function Logare(){
 
-        console.log(email,password)
-        let item ={email,password}
-        fetch("http://ec2-18-217-234-99.us-east-2.compute.amazonaws.com:8080/v1/login",{
-            method:'POST',
-            headers:{
-                "Content-Type":"application/json",
-                "Accept":"application/json"
-            },
-            body:JSON.stringify(item)
-        }).then((resp)=>{
-            resp.json().then((result)=>{
-                console.log(item)
-                console.log(result)
-                localStorage.setItem("user-info",JSON.stringify(result))
+        await axios.post('http://ec2-18-217-234-99.us-east-2.compute.amazonaws.com:8080/v1/login',{
+            email:email,
+            password:password,
 
-                if(!JSON.stringify(result['errors'])){
-                    //navigate('/Profile')
-                }else{
-                    document.getElementById('labeleroare').innerHTML=result['errors']
-                    console.log(JSON.stringify(result['errors']))
-                }
-            })
+        }).then(response=>{
+            if(response.data.errors){
+                setEroare(String(response.data.errors))
+            }else{
+                setEroare("")
+                console.log(response)
+                localStorage.setItem("user-info",response.data.token)
+                navigate('/Profile')
+                
+            }
             
-            
-        });
-
-        
-       
-        //navigate('/Profile') 
+        }).catch(err=>{
+            console.log(err.message)
+            setEroare("Email or password is in a wrong format")
+        })
 
     }
     const Inregistrarea=()=>{
 
         navigate('/SignIn')
     }
-
+    const[eroare,setEroare]=useState("")
     const[password,setPassword]=useState("")
     const[email,setEmail]=useState("")
 
@@ -52,7 +42,7 @@ const Login=()=>{
             <label>Login</label>
             <input type="text" placeholder="Email" id="Lemail" onChange={(e)=>setEmail(e.target.value)}></input>
             <input type="text" placeholder="Password" id="Lpassword" onChange={(e)=>setPassword(e.target.value)}></input>
-            <label id="labeleroare">aaa</label>
+            <label id="labeleroare">{eroare}</label>
             <div className="ButoaneLogin">
                 <button id="ButtonLogin" onClick={Logare}>Logheaza-te</button>
                 <button onClick={Inregistrarea}>Inregistreaza-te</button>
