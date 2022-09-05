@@ -9,8 +9,7 @@ import SignIn from './routes/SignIn';
 import WithNav from './components/WithNav';
 import WithoutNav from './components/WithoutNav';
 import UsersGroup from './routes/UsersGroup';
-import axios from 'axios'
-
+import Items from './routes/Items'
 
 function App() {
 
@@ -43,6 +42,10 @@ function App() {
 
       <Route element={<WithNav/>}>
         <Route path="/Groups/UsersGroup" element={< UsersGroup />}/>
+      </Route>
+
+      <Route element={<WithNav/>}>
+        <Route path="/Items" element={< Items />}/>
       </Route>
 
     </Routes>

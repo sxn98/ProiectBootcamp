@@ -12,8 +12,7 @@ import axios from "axios";
     }
 
 
-    console.log(datetrimise)
-    console.log(`Bearer ${localStorage.getItem('user-info')}`)
+    
     await axios.post('http://ec2-18-217-234-99.us-east-2.compute.amazonaws.com:8080/v1/items',datetrimise,{
         headers:{
             'Authorization':`Bearer ${localStorage.getItem('user-info')}`

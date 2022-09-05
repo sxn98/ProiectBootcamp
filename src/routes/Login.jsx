@@ -41,7 +41,7 @@ const Login=()=>{
 
             <label>Login</label>
             <input type="text" placeholder="Email" id="Lemail" onChange={(e)=>setEmail(e.target.value)}></input>
-            <input type="text" placeholder="Password" id="Lpassword" onChange={(e)=>setPassword(e.target.value)}></input>
+            <input type="password" placeholder="Password" id="Lpassword" onChange={(e)=>setPassword(e.target.value)}></input>
             <label id="labeleroare">{eroare}</label>
             <div className="ButoaneLogin">
                 <button id="ButtonLogin" onClick={Logare}>Logheaza-te</button>

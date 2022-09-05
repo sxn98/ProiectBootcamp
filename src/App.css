@@ -48,6 +48,17 @@
   border-radius: 24px;
 
 }
+.login input[type="password"]{
+  
+  display: block;
+  margin:  10px;
+  text-align: center;
+  border: 3px solid blue;
+  padding: 5px;
+  width: 130px;
+  border-radius: 24px;
+
+}
 .ButoaneLogin{
   margin:auto;
   width: 350px;
