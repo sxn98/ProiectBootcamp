@@ -1,15 +1,19 @@
-import exemplu from '../exemplu.json'
-let i=1
-export function Adauga(){
-    exemplu.push({numegrup:"alt grup "+i})
-    i++
-    //console.log(exemplu)
-    //console.log("asdf")
-    return exemplu;
-}
+import axios from "axios";
 
-export function Afiseaza(){
-    //console.log("asddff")
-    return exemplu;
+async function AddGroup(nume,detalii){
+    let datetrimise={
+        name:nume,
+        details:detalii
+    }
+
+    console.log(datetrimise)
+    const rezultat= await axios.post('http://ec2-18-217-234-99.us-east-2.compute.amazonaws.com:8080/v1/groups',datetrimise,{
+        headers:{
+            'Authorization':`Bearer ${localStorage.getItem('user-info')}`
+        }
+    })
+    
+
+   return rezultat.data
 }
-export default {Adauga,Afiseaza};
+export default AddGroup;

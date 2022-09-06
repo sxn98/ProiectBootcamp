@@ -1,29 +1,43 @@
 import ShowGroups from '../hooks/ShowGroups'
-import {Adauga} from '../utils/AddGroup'
-import { useNavigate } from 'react-router-dom'
+import AddGroup from '../utils/AddGroup'
+import getGrupuri from '../utils/getGrupuri'
+import { useState,createContext } from 'react'
 import '../css/Grup.css'
+
+export const StateContextGrup=createContext();
+
 const Groups=()=>{
 
-    const navigate=useNavigate();
-    const AdaugareGrup=()=>{
-        Adauga()  
-        navigate('/Groups')
-          
+
+    const[numeGrup,setNumeGrup]=useState("")
+    const[detalii,setDetalii]=useState("")
+    const[mesaj,setMesaj]=useState("")
+    let[schimbat,setSchimbat]=useState(0)
+    
+
+    const GrupAdaugat=async ()=>{
+        await AddGroup(numeGrup,detalii)
+        setMesaj(`Ati creat grupul ${numeGrup}!`)
+        setSchimbat(schimbat+1)
+        
     }
 
     return(
-        <div className="grup">
-                <table className="tabelgrup">
-                
-                    <tr>
-                        <th> Grupuri</th>
-                        <th><button onClick={AdaugareGrup}>Grup nou</button></th>
-                    </tr>
+        <StateContextGrup.Provider value={[schimbat]}>
 
-                    <ShowGroups/>
-                
-                </table>
-            </div>
+        <div className="grup">  
+
+            <ShowGroups/>
+
+            <div className='adaugareGrup'>
+                <input type="text" placeholder='nume item' onChange={(e)=>setNumeGrup(e.target.value)}></input>
+                <input type="text" placeholder='detalii' onChange={(e)=>setDetalii(e.target.value)}></input>
+
+                <button onClick={()=>{GrupAdaugat()}}>Adauga item nou</button>
+                <label>{mesaj}</label>
+            </div>        
+        </div>
+        </StateContextGrup.Provider>
     )
 
 }

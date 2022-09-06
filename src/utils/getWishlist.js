@@ -6,9 +6,8 @@ async function getWishlist(){
             'Authorization':`Bearer ${localStorage.getItem('user-info')}`
         }
     })
-    
+   // console.log(rezultat.data)
 
-   // return rezultat.data.results.map(obiect=>obiect.name)
-   return rezultat.data
+   return rezultat.data.wishlists
    
 }export default getWishlist;

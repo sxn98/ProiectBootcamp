@@ -1,46 +1,51 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import '../css/Wishlists.css'
 import ShowWishlistsItems from './ShowWishlistsItems';
 import getWishlist from '../utils/getWishlist'
 import AddWishlist from '../utils/AddWishlist'
+import DeleteWishlist from '../utils/DeleteWishlist';
 
 const ShowWishlists=()=>{
     const[dataWishlist,setDataWishlist]=useState("");
     const[numeWishlist,setNumeWishlist]=useState("");
     const[detaliiWishlist,setDetaliiWishlist]=useState("")
     const[mesaj,setMesaj]=useState("")
+    const[adaugat,setAdaugat]=useState(0)
+
 
     const printare=(e)=>{
         console.log("se da click pe "+e.target.innerText)
 
     }
 
+    useEffect(()=>{
+        getWishlist().then(wishlisttrimise=>{
+                setDataWishlist( wishlisttrimise)
+                
+        })
+    },[adaugat])
 
-    getWishlist().then(async wishlisttrimise=>{
-        
-        if(!dataWishlist){
-            setDataWishlist(await wishlisttrimise)
-            
-        }
-        //console.log(dataWishlist.shownResults[0].items)
-        //console.log(dataWishlist)
-    })
 
     const wishlistAdaugat=async ()=>{
         await AddWishlist(numeWishlist,detaliiWishlist)
         setMesaj(`Ati creat ${numeWishlist}!`)
-        window.location.reload(false)
+        setAdaugat(adaugat+1)
         
     }
-    //console.log(dataWishlist.shownResults[0].name)
+
     let rows=[]
     for(let i=0;i<dataWishlist.length;i++){
-        console.log(dataWishlist)
+        
         rows.push(
             <tr key={dataWishlist[i].id}>
-                <td>{dataWishlist[i].name}</td>
-                <td>{dataWishlist[i].details}</td>
-                <td><button >Sterge</button></td>
+                <th onClick={(e)=>printare(e)}>{dataWishlist[i].name}</th>
+                <td >{dataWishlist[i].details}</td>
+                <td><button onClick={async (e)=>{
+                    await DeleteWishlist(dataWishlist[i].id)
+                    setDataWishlist(dataWishlist.filter(eliminat=>{
+                        return eliminat.id!==dataWishlist[i].id
+                    }))
+                    }} >Sterge</button></td>
             </tr>
         )
     }
@@ -50,32 +55,27 @@ const ShowWishlists=()=>{
         <div className="wishlists">
         <table className="tabelwishlists">
             <tbody>
-                <tr>
-                    <th colSpan={2}>Wishlists</th>
+                <tr className='title'>
+                    <td colSpan={2}>Wishlists</td>
                     
                 </tr>
 
-                <tr>
+                <tr className='title'>
                    <td>Nume</td>
                    <td>Detalii</td>
                   
                 </tr>
+                
                 {rows}
 
-           
         
-                <tr>
-                    <td onClick={printare}></td>
-                    <td></td>
-                    <td><button>Sterge</button></td>
-                </tr>
             </tbody>
                 
             </table>
             <div className='adaugare'>
                 <input type="text" placeholder='nume item' onChange={(e)=>setNumeWishlist(e.target.value)}></input>
                 <input type="text" placeholder='detalii' onChange={(e)=>setDetaliiWishlist(e.target.value)}></input>
-                <button onClick={()=>{wishlistAdaugat()}}>Adauga item nou</button>
+                <button onClick={()=>{wishlistAdaugat()}}>Adauga wishlist nou</button>
                 <label>{mesaj}</label>
             </div>  
     </div>

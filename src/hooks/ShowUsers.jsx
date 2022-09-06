@@ -1,19 +1,20 @@
 import { useState } from 'react'
-import {Afiseaza} from '../utils/AddGroup'
+import AddGroup from '../utils/AddGroup'
 
 const ShowUsers=()=>{
-    let exemplu=Afiseaza()
-    const[data,setData]=useState(exemplu);
+
+    const[data,setData]=useState("");
 
     return(
         
         <tbody>
-        {data.map((grup)=>(
+        
+
             <tr>
-                <td >{grup.numegrup}</td>
+                <td >persoana</td>
                 <td><button>Sterge</button></td>
             </tr>
-        ))}
+
         </tbody>
     )
 }

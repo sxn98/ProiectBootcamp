@@ -1,5 +1,6 @@
 import './App.css';
 import "./css/NavBar.css"
+import "./css/Items.css"
 import {Route, Routes,useResolvedPath,useMatch} from "react-router-dom";
 import Profile from "./routes/Profile";
 import WishLists from './routes/WishLists';
