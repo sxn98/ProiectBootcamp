@@ -1,49 +1,49 @@
 import '../css/UsersGroup.css'
 import ShowUsers from '../hooks/ShowUsers';
-import ShowWishlists from '../hooks/ShowWishlists';
 import ShowWishlistsItems from '../hooks/ShowWishlistsItems';
-import { useNavigate } from 'react-router-dom';
-import { Adauga } from '../utils/AddUser';
+import ShowWishlistGrupuri from '../hooks/ShowWishlistGrupuri';
+import { useParams } from 'react-router-dom';
+import { useEffect,useState } from 'react';
+import getMe from '../utils/getMe';
+import {getGrupuriSearch} from '../utils/getGrupuri';
 const UsersGroup=()=>{
+    const grupCurent=useParams()
+    let isOwnerOfGroup=false
+
+    const[ownerGrup,setOwnerGrup]=useState("")
+    const[userCurent,setUserCurent]=useState("")    
+    const[idGrup,setIdGrup]=useState("")
+
+    useEffect(()=>{
+        getMe().then(eu=>{
+            setUserCurent(eu.id) 
 
 
-    const navigate=useNavigate();
-    const AdaugareUser=()=>{
-        Adauga()  
-        navigate('/Groups/UsersGroup')
+        })
+        getGrupuriSearch(grupCurent.grup).then(owner=>{
+            setOwnerGrup(owner[0]?.ownerId) 
+            setIdGrup(owner[0]?.id)
+        })
+
+    },[])
+
+    if(ownerGrup===userCurent){
+        isOwnerOfGroup=true
+
     }
+   
     return(
         <div className="usersgroup">
-            <div className='divusergroup'>
-                <input type="text" placeholder="adauga persoana" ></input>
-                <button onClick={AdaugareUser}>Adauga</button>
-                <table className="tabelusersgrup">
-                    
-                    <tr>
-                        <th> Participanti</th>
-                        
-                    </tr>
-                <ShowUsers/>
-                    
-                
-                </table>
-            </div>
+            
+            <ShowUsers value={idGrup}/>
 
-            <div className='divtabelwishlistgrup'>
-                <input type="text" placeholder="adauga wishlist" ></input>
-                <button>Adauga</button>
-                <table className='tabelwishlistgrup'>
-                    <tr>
-                        <th> Wishlist</th>
-                    </tr>
-                <ShowWishlists/>
-                </table>
-            </div>
+            <ShowWishlistGrupuri/>
 
             <div className='divtabelwishlistgrupiteme'>
             <ShowWishlistsItems/>
 
             </div>
+
         </div>
     )
 

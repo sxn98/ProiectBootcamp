@@ -1,6 +1,5 @@
 import ShowGroups from '../hooks/ShowGroups'
 import AddGroup from '../utils/AddGroup'
-import getGrupuri from '../utils/getGrupuri'
 import { useState,createContext } from 'react'
 import '../css/Grup.css'
 

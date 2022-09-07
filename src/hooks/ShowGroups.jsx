@@ -1,5 +1,5 @@
 import { useState,useEffect,useContext } from 'react'
-import getGrupuri from '../utils/getGrupuri'
+import {getGrupuri} from '../utils/getGrupuri'
 import { useNavigate } from 'react-router-dom'
 import DeleteGroup from '../utils/DeleteGroup'
 import { StateContextGrup } from '../routes/Groups'

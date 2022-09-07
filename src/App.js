@@ -42,7 +42,7 @@ function App() {
       </Route>
 
       <Route element={<WithNav/>}>
-        <Route path="/Groups/UsersGroup" element={< UsersGroup />}/>
+        <Route path="/Groups/:grup" element={< UsersGroup />}/>
       </Route>
 
       <Route element={<WithNav/>}>
