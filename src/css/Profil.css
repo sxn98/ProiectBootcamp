@@ -1,0 +1,79 @@
+.profil {
+    margin: auto;
+    margin-top: 1em;
+    width: 405px;
+    height: 300px;
+    background-color: hsla(177, 70%, 41%, 0.75);
+    padding: 10px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    
+    
+  }
+ .datepersonale{
+    padding: 10px;
+    margin: auto;
+    margin-top: 1em;
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    
+ } 
+.adresa{
+    padding: 10px;
+    margin: auto;
+    margin-top: 1em;
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+
+}
+.labelprofil{
+    margin-bottom: 3.2em;
+}
+.datepersonale input{
+  
+    display: block;
+    margin:  10px;
+    text-align: center;
+    border: 3px solid blue;
+    padding: 5px;
+    width: 130px;
+    border-radius: 24px;
+  
+  }
+.adresa input{
+  
+    display: block;
+    margin:  10px;
+    text-align: center;
+    border: 3px solid blue;
+    padding: 5px;
+    width: 130px;
+    border-radius: 24px;
+  
+  }
+
+  .hidden{
+    display: none;
+    
+  }
+  .visible{
+    display: flex;
+    
+  }
+
+  .profil button{
+    margin-top:260px ;
+    
+    align-items: center;
+    flex-direction: row;
+    text-align: center;
+    border: 2px solid crimson;
+    padding: 5px;
+    width: 130px;
+    border-radius: 12px;
+    
+  }

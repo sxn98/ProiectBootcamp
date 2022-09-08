@@ -42,12 +42,12 @@ const ShowGroups=()=>{
 
     return(
         <table className="tabelgrup">
-                    
+            <tbody>     
             <tr>
                 <th colSpan={2}> Grupuri</th>
                 
             </tr>
-            <tbody>
+            
             {rows}
             </tbody>
         </table>

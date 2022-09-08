@@ -27,11 +27,11 @@ function CustomLink({to,children}){
     const resolvedPath=useResolvedPath(to)
     const isActive=useMatch({path:resolvedPath.pathname})
     return(
-        <li>
+        
             <Link to={to}>
                 {children}
             </Link>
-        </li>
+       
     )
 }
 export default Navbar;

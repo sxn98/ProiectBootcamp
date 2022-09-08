@@ -16,8 +16,8 @@ const SignIn=()=>{
             console.log(response.data)
             navigate('/')
         }).catch(err=>{
-            console.log(err.message)
-            setEroare(err.message)
+
+            setEroare(err.response.data.errors[0].msg)
         })
         
     }
@@ -34,7 +34,7 @@ const SignIn=()=>{
             <input type="text" placeholder="Password" id="Spassword" onChange={(e)=>setPassword(e.target.value)}></input>
             <input type="text" placeholder="Confirm Password" id="SConfirm"></input>
             <input type="text" placeholder="Email" id="Semail" onChange={(e)=>setEmail(e.target.value)}></input>
-            <input type="text" placeholder="Date of Birth" id="Sdob" onChange={(e)=>setDob(e.target.value)}></input>
+            <input type="text" placeholder="DoB(yyyy-mm-dd)" id="Sdob" onChange={(e)=>{setDob(e.target.value);console.log(dob)}}></input>
             <input type="text" placeholder="Phone Number" id="Sphone" onChange={(e)=>setPhone(e.target.value)}></input>
             <button id="ButtonInregistrare" onClick={Inregistrarea}>Inregistreaza-te</button>
             <label >{eroare}</label>
