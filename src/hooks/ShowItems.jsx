@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext,useContext } from 'react'
-import getItems from '../utils/getItems';
+import {getItems} from '../utils/getItems';
 import DeleteItem from '../utils/DeleteItem';
 import { StateContext,StateProvider } from '../routes/Items';
 

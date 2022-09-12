@@ -4,9 +4,11 @@
     padding: 8px;
   }
  
-  .wishlists tr:hover th{
+  .wishlists th:hover{
     background-color:rgb(190, 246, 237)
   }
+
+  
   .title{
     font-weight: bold;
   }

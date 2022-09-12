@@ -1,29 +1,37 @@
 import ShowWishlists from '../hooks/ShowWishlists'
 import ShowWishlistsItems from '../hooks/ShowWishlistsItems'
-import ShowItems from '../hooks/ShowItems'
 import '../css/Wishlists.css'
-import { useNavigate } from 'react-router-dom'
-import { Adauga } from '../utils/AddWishlist'
+import { createContext,useState,useContext } from 'react'
 
+
+
+export const WishlistStateContext=createContext();
 
 const WishLists=()=>{
+    
+    let[wishlistSelectat,setWishlistSelectat]=useState("")
+    const handleClick=(wishlistClicked)=>{
+        setWishlistSelectat(wishlistClicked)
 
+    }
 
     return(
-        <div className='wishliststotal'>
+        <WishlistStateContext.Provider value={[wishlistSelectat]}>
+            <div className='wishliststotal'>
 
- 
-            <ShowWishlists/>
+    
+                <ShowWishlists handleClick={handleClick}/>
 
-            
-            <div className='itemewishlist'>
+                
+                <div className='itemewishlist'>
 
-                <ShowWishlistsItems/>
+                    <ShowWishlistsItems/>
 
-            </div>  
+                </div>  
 
-     
-        </div>      
+        
+            </div>
+        </WishlistStateContext.Provider>      
     )
 }
 export default WishLists;
