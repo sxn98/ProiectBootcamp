@@ -1,0 +1,23 @@
+.notificari {
+    margin: auto;
+    margin-top: 1em;
+    width: 400px;
+    height: 100%;
+    background-color: hsla(177, 70%, 41%, 0.75);
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+    
+  }
+  td,th{
+    border: 1px solid black;
+    padding: 8px;
+  }
+  .tabelnotificari{
+    /*background-color: red;*/
+    border-collapse: collapse;
+    width: 400px;
+  }

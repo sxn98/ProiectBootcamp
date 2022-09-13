@@ -1,6 +1,6 @@
 import '../css/UsersGroup.css'
 import ShowUsers from '../hooks/ShowUsers';
-import ShowWishlistsItems from '../hooks/ShowWishlistsItems';
+import ShowWishlistsItemsGrupuri from '../hooks/ShowWIshlistItemsGrupuri';
 import ShowWishlistGrupuri from '../hooks/ShowWishlistGrupuri';
 import { useParams } from 'react-router-dom';
 import { useEffect,useState } from 'react';
@@ -29,18 +29,19 @@ const UsersGroup=()=>{
 
     if(ownerGrup===userCurent){
         isOwnerOfGroup=true
+        console.log(isOwnerOfGroup)
 
     }
    
     return(
         <div className="usersgroup">
             
-            <ShowUsers value={idGrup}/>
+            <ShowUsers value={[idGrup,grupCurent]}/>
 
             <ShowWishlistGrupuri/>
 
             <div className='divtabelwishlistgrupiteme'>
-            <ShowWishlistsItems/>
+            <ShowWishlistsItemsGrupuri/>
 
             </div>
 

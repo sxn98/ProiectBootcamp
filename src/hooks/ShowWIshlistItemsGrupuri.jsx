@@ -1,22 +1,23 @@
 import { useState,useContext,useEffect } from 'react'
-import { WishlistStateContext } from '../routes/WishLists';
 import getWishlistItems from '../utils/getWishlistItems';
 import {getItemsSearch} from '../utils/getItems';
-import AddItemToWishlist from '../utils/AddItemToWishlist';
+import BuyItem from '../utils/BuyItem';
 
-const ShowWishlistsItems=()=>{
+const ShowWishlistsItemsGrupuri=()=>{
     const[dataItem,setDataItem]=useState("");
-    const[wishlistSelectat,setWishlistSelectat]=useContext(WishlistStateContext)
+   // const[wishlistSelectat,setWishlistSelectat]=useContext(WishlistStateContext)
+   const[wishlistSelectat,setWIshlistSelectat]=useState("")
     const[dateWishlist,setDateWishlist]=useState("")
     const[itemsID,setItemsID]=useState("")
     const[numeItem,setNumeItem]=useState("")
     const[mesaj,setMesaj]=useState("")
 
-    const ItemAdaugat=()=>{
+    const ItemCumparat=()=>{
+       
         getItemsSearch(numeItem).then(itemTrimis=>{
             if(itemTrimis.length>0 ){
                 //console.log(dateWishlist,itemsID,itemTrimis[0].id)
-                AddItemToWishlist(dateWishlist,itemsID,itemTrimis[0].id).then(rezultat=>{
+                BuyItem(dateWishlist,itemsID,itemTrimis[0].id).then(rezultat=>{
                     if(rezultat==0){
                         setMesaj(`Itemul "${numeItem}" exista deja in wishlist`)
                     }else{
@@ -32,12 +33,13 @@ const ShowWishlistsItems=()=>{
             
         })
 
-       
+    
     }
 
 
     useEffect(()=>{
         if(wishlistSelectat.length>0){
+            console.log(wishlistSelectat)
             getWishlistItems(wishlistSelectat).then(itemeTrimise=>{
                 setDataItem(itemeTrimise[0].items)
                 setDateWishlist({
@@ -56,7 +58,7 @@ const ShowWishlistsItems=()=>{
                 //console.log(itemeTrimise[0].id,itemeTrimise[0].details)
             })
         }
-    },[wishlistSelectat,mesaj])
+    },[wishlistSelectat])
 
 
     let rows=[]
@@ -94,13 +96,9 @@ const ShowWishlistsItems=()=>{
                 {rows}
                 </tbody>
             </table>
-            <div className='adaugare'>
-                <input type="text" placeholder='nume item' onChange={(e)=>setNumeItem(e.target.value)}></input>
-                <button onClick={()=>{ItemAdaugat()}}>Adauga item in wishlist</button>
-                <label>{mesaj}</label>
-            </div>
+
         </div>
 
     )
 }
-export default ShowWishlistsItems;
+export default ShowWishlistsItemsGrupuri;

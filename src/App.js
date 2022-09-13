@@ -11,6 +11,7 @@ import WithNav from './components/WithNav';
 import WithoutNav from './components/WithoutNav';
 import UsersGroup from './routes/UsersGroup';
 import Items from './routes/Items'
+import Notifications from './routes/Notifications';
 
 function App() {
 
@@ -47,6 +48,10 @@ function App() {
 
       <Route element={<WithNav/>}>
         <Route path="/Items" element={< Items />}/>
+      </Route>
+
+      <Route element={<WithNav/>}>
+        <Route path="/Notifications" element={< Notifications />}/>
       </Route>
 
     </Routes>

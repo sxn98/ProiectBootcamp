@@ -19,6 +19,9 @@ function Navbar(){
                 <li>
                     <CustomLink to="/Items">Inventar</CustomLink>
                 </li>
+                <li>
+                    <CustomLink to="/Notifications">Notificari</CustomLink>
+                </li>
             </ul>
         </nav>
     )
