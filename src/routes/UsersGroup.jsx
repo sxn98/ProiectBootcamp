@@ -29,7 +29,7 @@ const UsersGroup=()=>{
 
     if(ownerGrup===userCurent){
         isOwnerOfGroup=true
-        console.log(isOwnerOfGroup)
+        //console.log(isOwnerOfGroup)
 
     }
    
@@ -38,7 +38,7 @@ const UsersGroup=()=>{
             
             <ShowUsers value={[idGrup,grupCurent]}/>
 
-            <ShowWishlistGrupuri/>
+            <ShowWishlistGrupuri value={[idGrup,grupCurent]}/>
 
             <div className='divtabelwishlistgrupiteme'>
             <ShowWishlistsItemsGrupuri/>

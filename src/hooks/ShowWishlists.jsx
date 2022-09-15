@@ -54,6 +54,7 @@ const ShowWishlists=({handleClick})=>{
 
     return(
             <div className="wishlists">
+                <label> Pentru a viziona itemele unui wishlist, faceti click pe numele unui wishlist</label>
                 <table className="tabelwishlists">
                     <tbody>
                         <tr className='title'>
@@ -74,6 +75,7 @@ const ShowWishlists=({handleClick})=>{
                     
                 </table>
                     <div className='adaugare'>
+                        <label>Adaugare wishlist nou</label>
                         <input type="text" placeholder='nume item' onChange={(e)=>setNumeWishlist(e.target.value)}></input>
                         <input type="text" placeholder='detalii' onChange={(e)=>setDetaliiWishlist(e.target.value)}></input>
                         <button onClick={()=>{wishlistAdaugat()}}>Adauga wishlist nou</button>

@@ -22,7 +22,7 @@ const ShowUsers=(dateGrup)=>{
     }
     useEffect(()=>{
         getGroupUsers(grupName).then(participanti=>{
-                console.log(participanti)
+                //console.log(participanti)
                 setDataUsers(participanti)
                 
         })
@@ -31,6 +31,7 @@ const ShowUsers=(dateGrup)=>{
     
         let rows=[]
         for(let i=0;i<dataUsers.length;i++){
+           
             rows.push(
                 <tr key={dataUsers[i].id}>
                     <td>{dataUsers[i].name}</td>
@@ -42,8 +43,6 @@ const ShowUsers=(dateGrup)=>{
     return(
 
         <div className='divusergroup'>
-            <input type="text" placeholder="adauga persoana" onChange={(e)=>setNumeUser(e.target.value)}></input>
-            <button onClick={AdaugareUser}>Adauga</button>
 
             <table className="tabelusersgrup">
                 <tbody>
@@ -55,6 +54,11 @@ const ShowUsers=(dateGrup)=>{
                     {rows}
                 </tbody>
             </table>
+            <div className='adaugare'>
+                <label>Adaugare persoane noi</label>
+                <input type="text" placeholder="adauga persoana" onChange={(e)=>setNumeUser(e.target.value)}></input>
+                <button onClick={AdaugareUser}>Adauga</button>
+            </div>
         </div>
     )
 }

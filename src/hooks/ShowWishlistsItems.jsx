@@ -3,6 +3,8 @@ import { WishlistStateContext } from '../routes/WishLists';
 import getWishlistItems from '../utils/getWishlistItems';
 import {getItemsSearch} from '../utils/getItems';
 import AddItemToWishlist from '../utils/AddItemToWishlist';
+import DeleteWishlistItem from '../utils/DeleteWishlistItem';
+import '../css/Wishlists.css'
 
 const ShowWishlistsItems=()=>{
     const[dataItem,setDataItem]=useState("");
@@ -52,7 +54,7 @@ const ShowWishlistsItems=()=>{
                 }
                 setItemsID(arrayID)
                 
-                console.log(itemeTrimise)
+                //console.log(itemeTrimise)
                 //console.log(itemeTrimise[0].id,itemeTrimise[0].details)
             })
         }
@@ -61,46 +63,52 @@ const ShowWishlistsItems=()=>{
 
     let rows=[]
     if(dataItem){
-
-
-        for(let i=0;i< dataItem.length;i++){
-            
-           
+        for(let i=0;i< dataItem.length;i++){       
             rows.push(
                 <tr key={i}>
                     <th>{dataItem[i].name}</th>
                     
-                    <td><button>Sterge</button></td>
+                    <td><button onClick={async (e)=>{
+                    await DeleteWishlistItem(dateWishlist,itemsID,dataItem[i].id)
+                    setDataItem(dataItem.filter(eliminat=>{
+                        return eliminat.id!==dataItem[i].id
+                    }))
+                    }}>Sterge</button></td>
                 </tr>
             )
         }
-        rows.push(
-            
-        )
     }
     
    
-
+    if(wishlistSelectat==0){
+       return(
+        <div></div>
+       )
+    }else{
     return(
-        <div>
+        <div className='itemewishlist'>
+            <label>Itemele din {wishlistSelectat}</label>
+
             <table className="tabelitemewishlist">
                 <tbody>
 
                     <tr>
-                        <th colSpan={2} onClick={(e)=>{console.log(wishlistSelectat)}} >Iteme</th>
-
+                        <th>Nume item</th>
                     </tr>
 
                 {rows}
                 </tbody>
             </table>
+
             <div className='adaugare'>
+                <label> Adaugare item nou</label>
                 <input type="text" placeholder='nume item' onChange={(e)=>setNumeItem(e.target.value)}></input>
                 <button onClick={()=>{ItemAdaugat()}}>Adauga item in wishlist</button>
                 <label>{mesaj}</label>
             </div>
-        </div>
 
-    )
+        </div> 
+        )
+    }
 }
 export default ShowWishlistsItems;

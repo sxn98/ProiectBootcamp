@@ -23,11 +23,7 @@ const WishLists=()=>{
                 <ShowWishlists handleClick={handleClick}/>
 
                 
-                <div className='itemewishlist'>
-
-                    <ShowWishlistsItems/>
-
-                </div>  
+                <ShowWishlistsItems/>
 
         
             </div>

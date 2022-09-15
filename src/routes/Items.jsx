@@ -30,12 +30,13 @@ const Items=()=>{
     return(
         <StateContext.Provider value={[schimbat]}>
         <div className='iteme'>
-
+        
 
             <ShowItems />
 
-
+            
             <div className='adaugare'>
+                <label>Adaugare item nou</label>
                 <input type="text" placeholder='nume item' onChange={(e)=>setNumeitem(e.target.value)}></input>
                 <input type="text" placeholder='detalii' onChange={(e)=>setDetalii(e.target.value)}></input>
                 <input type="text" placeholder='cantitate' onChange={(e)=>setCantitate(e.target.value)}></input>

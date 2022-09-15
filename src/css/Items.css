@@ -2,7 +2,7 @@
     margin: auto;
     margin-top: 1em;
     margin-left: 1em;
-    width: 500px;
+    width: 80%;
     height: 100%;
     background-color: hsla(177, 70%, 41%, 0.75);
     padding: 15px;
@@ -19,11 +19,37 @@
     padding: 20px;
     margin-top:1em;
     height: 100%;
-    width: 65%;
+    width: 50%;
     display:flex;
     margin: auto;
     flex-direction: column;
-
-   
     
+  }
+
+  .divformModifica{
+    display:none;
+ 
+  }
+  .divform{
+    position:fixed;
+    left: 45%;
+    top: 30%;
+    transform:translate(-50%,5%);
+    border:3px solid #999999;
+    z-index:9;
+  }
+
+  .form{
+    max-width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .ItemChangeOk{
+    background-color: rgb(177, 244, 160);
+  }
+  .ItemChangeCancel{
+    background-color: rgb(246, 108, 106);
   }
