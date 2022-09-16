@@ -2,11 +2,13 @@ import { useState,useContext,useEffect } from 'react'
 import getWishlistItems from '../utils/getWishlistItems';
 import {getItemsSearch} from '../utils/getItems';
 import BuyItem from '../utils/BuyItem';
+import { WishlistGrupStateContext } from '../routes/UsersGroup';
+
 
 const ShowWishlistsItemsGrupuri=()=>{
     const[dataItem,setDataItem]=useState("");
    // const[wishlistSelectat,setWishlistSelectat]=useContext(WishlistStateContext)
-   const[wishlistSelectat,setWIshlistSelectat]=useState("")
+   const[wishlistSelectat,setWIshlistSelectat]=useContext(WishlistGrupStateContext)
     const[dateWishlist,setDateWishlist]=useState("")
     const[itemsID,setItemsID]=useState("")
     const[numeItem,setNumeItem]=useState("")
@@ -39,9 +41,10 @@ const ShowWishlistsItemsGrupuri=()=>{
 
     useEffect(()=>{
         if(wishlistSelectat.length>0){
-            console.log(wishlistSelectat)
+            
             getWishlistItems(wishlistSelectat).then(itemeTrimise=>{
                 setDataItem(itemeTrimise[0].items)
+                
                 setDateWishlist({
                     id:itemeTrimise[0].id,
                     name:itemeTrimise[0].name,
@@ -54,7 +57,7 @@ const ShowWishlistsItemsGrupuri=()=>{
                 }
                 setItemsID(arrayID)
                 
-                console.log(itemeTrimise)
+                //console.log(itemeTrimise[0].items)
                 //console.log(itemeTrimise[0].id,itemeTrimise[0].details)
             })
         }
@@ -63,14 +66,14 @@ const ShowWishlistsItemsGrupuri=()=>{
 
     let rows=[]
     if(dataItem){
-
+        //console.log(dataItem[1].item.name)
 
         for(let i=0;i< dataItem.length;i++){
             
            
             rows.push(
                 <tr key={i}>
-                    <th>{dataItem[i].name}</th>
+                    <th>{dataItem[i].item.name}</th>
                     
                     <td><button>Sterge</button></td>
                 </tr>

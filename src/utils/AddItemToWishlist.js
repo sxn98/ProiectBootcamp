@@ -6,8 +6,9 @@ async function AddItemToWishlist(dateWishlist,itemsID,IdItemTrimis){
     if(itemsID.indexOf(IdItemTrimis)!==-1){
         return 0
     }
+    //console.log(dateWishlist,itemsID,IdItemTrimis)
     itemsID.push(IdItemTrimis)
-    console.log(itemsID)
+    //console.log(itemsID)
     let datetrimise={
         wishlist:{
             name:dateWishlist.name,

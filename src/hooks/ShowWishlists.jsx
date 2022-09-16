@@ -16,6 +16,7 @@ const ShowWishlists=({handleClick})=>{
 
     const printare= (e)=>{
         //console.log("se da click pe "+e.target.innerText)
+        
         handleClick(e.target.innerText)
     }
 

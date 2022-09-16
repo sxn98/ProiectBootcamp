@@ -108,7 +108,7 @@ import UpdateItem from '../utils/UpdateItem';
             </table>
 
             <div className={formHidden? "divformModifica":"divform"}>
-                <form action="#" className='form'>
+                <form onSubmit={(e)=>{e.preventDefault()}} className='form'>
                     <label>Modificare item</label>
                     <label>nume</label>
                     <input value={numeItem} onChange={(e)=>{setNumeItem(e.target.value)}}></input>

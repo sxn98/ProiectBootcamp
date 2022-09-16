@@ -24,8 +24,6 @@ const ShowWishlistsItems=()=>{
                     }else{
                         setMesaj(`Ati adaugat in wishlist itemul "${numeItem}"`)
                     }
-                
-                
                 })
                 
             }else{
@@ -42,6 +40,7 @@ const ShowWishlistsItems=()=>{
         if(wishlistSelectat.length>0){
             getWishlistItems(wishlistSelectat).then(itemeTrimise=>{
                 setDataItem(itemeTrimise[0].items)
+                //console.log(itemeTrimise[0]?.items[0]?.item)
                 setDateWishlist({
                     id:itemeTrimise[0].id,
                     name:itemeTrimise[0].name,
@@ -50,10 +49,10 @@ const ShowWishlistsItems=()=>{
                 const arrayID=[]
                 for(let i=0;i<itemeTrimise[0].items.length;i++){
         
-                    arrayID.push(itemeTrimise[0].items[i].id)
+                    arrayID.push(itemeTrimise[0].items[i].item.id)
                 }
                 setItemsID(arrayID)
-                
+                //console.log(arrayID)
                 //console.log(itemeTrimise)
                 //console.log(itemeTrimise[0].id,itemeTrimise[0].details)
             })
@@ -63,15 +62,18 @@ const ShowWishlistsItems=()=>{
 
     let rows=[]
     if(dataItem){
+        //console.log(dataItem)
         for(let i=0;i< dataItem.length;i++){       
             rows.push(
                 <tr key={i}>
-                    <th>{dataItem[i].name}</th>
+                    <th>{dataItem[i].item.name}</th>
                     
                     <td><button onClick={async (e)=>{
-                    await DeleteWishlistItem(dateWishlist,itemsID,dataItem[i].id)
+                    await DeleteWishlistItem(dateWishlist,itemsID,dataItem[i].item.id)
                     setDataItem(dataItem.filter(eliminat=>{
-                        return eliminat.id!==dataItem[i].id
+                       // console.log(eliminat.item.id)
+                        //console.log(dataItem[i].item.id)
+                        return eliminat.item.id!==dataItem[i].item.id
                     }))
                     }}>Sterge</button></td>
                 </tr>
@@ -101,7 +103,7 @@ const ShowWishlistsItems=()=>{
             </table>
 
             <div className='adaugare'>
-                <label> Adaugare item nou</label>
+                <label> Adaugare item nou din inventar</label>
                 <input type="text" placeholder='nume item' onChange={(e)=>setNumeItem(e.target.value)}></input>
                 <button onClick={()=>{ItemAdaugat()}}>Adauga item in wishlist</button>
                 <label>{mesaj}</label>

@@ -3,13 +3,17 @@ import ShowUsers from '../hooks/ShowUsers';
 import ShowWishlistsItemsGrupuri from '../hooks/ShowWIshlistItemsGrupuri';
 import ShowWishlistGrupuri from '../hooks/ShowWishlistGrupuri';
 import { useParams } from 'react-router-dom';
-import { useEffect,useState } from 'react';
+import { useEffect,useState,createContext } from 'react';
 import getMe from '../utils/getMe';
 import {getGrupuriSearch} from '../utils/getGrupuri';
+
+export const WishlistGrupStateContext=createContext();
+
 const UsersGroup=()=>{
     const grupCurent=useParams()
     let isOwnerOfGroup=false
 
+    let[wishlistSelectat,setWishlistSelectat]=useState("")
     const[ownerGrup,setOwnerGrup]=useState("")
     const[userCurent,setUserCurent]=useState("")    
     const[idGrup,setIdGrup]=useState("")
@@ -26,7 +30,12 @@ const UsersGroup=()=>{
         })
 
     },[])
-
+    
+    const handleClick=(wishlistClicked)=>{
+        setWishlistSelectat(wishlistClicked)
+        
+    }
+    //console.log(handleClick)
     if(ownerGrup===userCurent){
         isOwnerOfGroup=true
         //console.log(isOwnerOfGroup)
@@ -34,18 +43,20 @@ const UsersGroup=()=>{
     }
    
     return(
-        <div className="usersgroup">
-            
-            <ShowUsers value={[idGrup,grupCurent]}/>
+        <WishlistGrupStateContext.Provider value={[wishlistSelectat]}>
+            <div className="usersgroup">
+                
+                <ShowUsers value={[idGrup,grupCurent]}/>
 
-            <ShowWishlistGrupuri value={[idGrup,grupCurent]}/>
+                <ShowWishlistGrupuri value={[idGrup,grupCurent]} handleClick={handleClick}/>
 
-            <div className='divtabelwishlistgrupiteme'>
-            <ShowWishlistsItemsGrupuri/>
+                <div className='divtabelwishlistgrupiteme'>
+                <ShowWishlistsItemsGrupuri />
+
+                </div>
 
             </div>
-
-        </div>
+        </WishlistGrupStateContext.Provider>
     )
 
 }
