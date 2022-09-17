@@ -78,3 +78,6 @@
     flex-direction: column;
     
   }
+  .owner{
+    background-color: rgb(240, 234, 169);
+  }

@@ -29,10 +29,11 @@ const Groups=()=>{
             <ShowGroups/>
 
             <div className='adaugareGrup'>
-                <input type="text" placeholder='nume item' onChange={(e)=>setNumeGrup(e.target.value)}></input>
+                <label>Creare grup nou</label>
+                <input type="text" placeholder='nume grup' onChange={(e)=>setNumeGrup(e.target.value)}></input>
                 <input type="text" placeholder='detalii' onChange={(e)=>setDetalii(e.target.value)}></input>
 
-                <button onClick={()=>{GrupAdaugat()}}>Adauga item nou</button>
+                <button onClick={()=>{GrupAdaugat()}}>Creaza</button>
                 <label>{mesaj}</label>
             </div>        
         </div>

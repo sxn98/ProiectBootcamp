@@ -1,14 +1,15 @@
 import { useState,useContext,useEffect } from 'react'
-import getWishlistItems from '../utils/getWishlistItems';
 import {getItemsSearch} from '../utils/getItems';
 import BuyItem from '../utils/BuyItem';
 import { WishlistGrupStateContext } from '../routes/UsersGroup';
+import { getGrupuriSearch } from '../utils/getGrupuri';
 
 
-const ShowWishlistsItemsGrupuri=()=>{
+const ShowWishlistsItemsGrupuri=(dateGrup)=>{
+    //console.log(dateGrup.value[1].grup)
+
     const[dataItem,setDataItem]=useState("");
-   // const[wishlistSelectat,setWishlistSelectat]=useContext(WishlistStateContext)
-   const[wishlistSelectat,setWIshlistSelectat]=useContext(WishlistGrupStateContext)
+    const[wishlistSelectat,setWIshlistSelectat]=useContext(WishlistGrupStateContext)
     const[dateWishlist,setDateWishlist]=useState("")
     const[itemsID,setItemsID]=useState("")
     const[numeItem,setNumeItem]=useState("")
@@ -17,6 +18,7 @@ const ShowWishlistsItemsGrupuri=()=>{
     const ItemCumparat=()=>{
        
         getItemsSearch(numeItem).then(itemTrimis=>{
+            
             if(itemTrimis.length>0 ){
                 //console.log(dateWishlist,itemsID,itemTrimis[0].id)
                 BuyItem(dateWishlist,itemsID,itemTrimis[0].id).then(rezultat=>{
@@ -42,23 +44,30 @@ const ShowWishlistsItemsGrupuri=()=>{
     useEffect(()=>{
         if(wishlistSelectat.length>0){
             
-            getWishlistItems(wishlistSelectat).then(itemeTrimise=>{
-                setDataItem(itemeTrimise[0].items)
+            getGrupuriSearch(dateGrup.value[1].grup).then(itemeTrimise=>{
+                //console.log(itemeTrimise[0].wishlists)
+                for(let i=0;i<itemeTrimise[0].wishlists.length;i++){
+                    if(itemeTrimise[0].wishlists[i].name===wishlistSelectat){
+                        //console.log(itemeTrimise[0].wishlists[i])
+                        //console.log(itemeTrimise[0].wishlists[i].items)
+                        setDataItem(itemeTrimise[0].wishlists[i].items)
                 
-                setDateWishlist({
-                    id:itemeTrimise[0].id,
-                    name:itemeTrimise[0].name,
-                    details:itemeTrimise[0].details
-                })
-                const arrayID=[]
-                for(let i=0;i<itemeTrimise[0].items.length;i++){
-        
-                    arrayID.push(itemeTrimise[0].items[i].id)
+                        setDateWishlist({
+                            id:itemeTrimise[0].wishlists[i].items.id,
+                            name:itemeTrimise[0].wishlists[i].items.name,
+                            details:itemeTrimise[0].wishlists[i].items.details
+                        })
+                        const arrayID=[]
+                        for(let j=0;j<itemeTrimise[0].wishlists[i].items.length;j++){
+                
+                            arrayID.push(itemeTrimise[0].wishlists[i].items[j].id)
+                        }
+                        setItemsID(arrayID)
+                    }else{
+
+                    }
+
                 }
-                setItemsID(arrayID)
-                
-                //console.log(itemeTrimise[0].items)
-                //console.log(itemeTrimise[0].id,itemeTrimise[0].details)
             })
         }
     },[wishlistSelectat])
@@ -73,9 +82,9 @@ const ShowWishlistsItemsGrupuri=()=>{
            
             rows.push(
                 <tr key={i}>
-                    <th>{dataItem[i].item.name}</th>
+                    <td>{dataItem[i].name}</td>
                     
-                    <td><button>Sterge</button></td>
+                    <td></td>
                 </tr>
             )
         }
@@ -84,7 +93,7 @@ const ShowWishlistsItemsGrupuri=()=>{
         )
     }
     
-   
+
 
     return(
         <div>
@@ -95,11 +104,15 @@ const ShowWishlistsItemsGrupuri=()=>{
                         <th colSpan={2} onClick={(e)=>{console.log(wishlistSelectat)}} >Iteme</th>
 
                     </tr>
-
+                    <tr>
+                        <th>Nume item</th>
+                        <th>Cumparator/i</th>
+                    </tr>
                 {rows}
+                
                 </tbody>
             </table>
-
+            <label>Pentru a marca un item ca si cumparat, apasati pe numele lui</label>
         </div>
 
     )
