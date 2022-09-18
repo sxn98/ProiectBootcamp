@@ -1,24 +1,21 @@
 import axios from "axios";
 
 
-async function BuyItem(dateWishlist,itemsID,IdItemTrimis){
-    
-    if(itemsID.indexOf(IdItemTrimis)!==-1){
+async function BuyItem(idWishlist,idItem,idBuyer,arrayBuyers){
+    if(arrayBuyers.indexOf(idBuyer)!==-1){
         return 0
     }
-    itemsID.push(IdItemTrimis)
-    console.log(itemsID)
-    let datetrimise={
-        wishlist:{
-            name:dateWishlist.name,
-            details:dateWishlist.details
-        },
-        itemIds:itemsID
 
+
+    arrayBuyers.push(idBuyer)
+
+    let dateTrimise={
+        "buyersIds":[
+            idBuyer
+        ]
     }
-
-    //console.log(JSON.stringify(datetrimise))
-    const rezultat= await axios.put(`http://ec2-18-217-234-99.us-east-2.compute.amazonaws.com:8080/v1/wishlists/${dateWishlist.id}/items/${IdItemTrimis}`,datetrimise,{
+    //console.log(dateTrimise)
+    const rezultat= await axios.put(`http://ec2-18-217-234-99.us-east-2.compute.amazonaws.com:8080/v1/wishlists/${idWishlist}/items/${idItem}/buy`,dateTrimise,{
         headers:{
             'Authorization':`Bearer ${localStorage.getItem('user-info')}`
         }

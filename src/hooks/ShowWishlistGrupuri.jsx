@@ -67,15 +67,16 @@ const ShowWishlistsGrupuri=(dateGrup,{handleClick})=>{
     //console.log(isOwner)
     //console.log(dateGrup.value[2])
     if(dateGrup.value[2]===true){
+
         
-        console.log('aaaaaaaaaaaaaaaaaaa')
         //console.log(isOwner)
         inputAdaugare.push(
-                <div className="adaugare">
+                <div key='inputAdaugareWishlist' className="adaugare">
                     <label>Adaugare wishlist nou</label>
                     <input type="text" placeholder="adauga wishlist" onChange={(e)=>{setWishlistAdaugat(e.target.value)}} ></input>
                     <button onClick={(e)=>{Adaugare(e)}}>Adauga</button>
                     <label>{mesaj}</label>
+                    
                 </div>
         )
         for(let i=0;i<dataWishlist.length;i++){

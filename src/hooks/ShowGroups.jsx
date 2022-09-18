@@ -16,12 +16,17 @@ const ShowGroups=()=>{
    }
 
    useEffect(()=>{
+    if(!localStorage.getItem('user-info')){
+        navigate('/')
+    }
+    
     getSharedGroups().then(rezultat=>{
         setDataGrup(rezultat)
         //console.log(rezultat[2])
         //console.log(rezultat[0].Group.name)
     })
-
+    
+    
     },[schimbat])
 
     let rows=[]

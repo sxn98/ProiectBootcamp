@@ -2,6 +2,9 @@ import ShowGroups from '../hooks/ShowGroups'
 import AddGroup from '../utils/AddGroup'
 import { useState,createContext } from 'react'
 import '../css/Grup.css'
+import getMe from '../utils/getMe';
+import AddUser from '../utils/AddUser';
+
 
 export const StateContextGrup=createContext();
 
@@ -14,11 +17,17 @@ const Groups=()=>{
     let[schimbat,setSchimbat]=useState(0)
     
 
-    const GrupAdaugat=async ()=>{
-        await AddGroup(numeGrup,detalii)
-        setMesaj(`Ati creat grupul ${numeGrup}!`)
-        setSchimbat(schimbat+1)
-        
+    const GrupAdaugat= ()=>{
+        AddGroup(numeGrup,detalii).then(grupCreat=>{
+            console.log(grupCreat)
+            AddUser(grupCreat.id,grupCreat.ownerId).then(rezultat=>{
+                console.log(rezultat)
+                setMesaj(`Ati creat grupul ${numeGrup}!`)
+                setSchimbat(schimbat+1)
+            })
+            
+        })
+            
     }
 
     return(

@@ -3,10 +3,13 @@ import '../css/Wishlists.css'
 import getWishlist from '../utils/getWishlist'
 import AddWishlist from '../utils/AddWishlist'
 import DeleteWishlist from '../utils/DeleteWishlist';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const ShowWishlists=({handleClick})=>{
+    const navigate=useNavigate()
+
     const[dataWishlist,setDataWishlist]=useState("");
     const[numeWishlist,setNumeWishlist]=useState("");
     const[detaliiWishlist,setDetaliiWishlist]=useState("")
@@ -25,6 +28,11 @@ const ShowWishlists=({handleClick})=>{
                 setDataWishlist( wishlisttrimise)
                 
         })
+       
+        if(!localStorage.getItem('user-info')){
+            console.log('')
+            navigate('/')
+        }
     },[adaugat])
 
 

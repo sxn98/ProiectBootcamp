@@ -4,7 +4,7 @@ import axios from "axios";
 
 const Login=()=>{
     const navigate=useNavigate();
-
+    localStorage.setItem("user-info","")
    async function Logare(){
 
         await axios.post('http://ec2-18-217-234-99.us-east-2.compute.amazonaws.com:8080/v1/login',{
@@ -16,7 +16,7 @@ const Login=()=>{
                 setEroare(String(response.data.errors))
             }else{
                 setEroare("")
-                console.log(response)
+                //console.log(response)
                 localStorage.setItem("user-info",response.data.token)
                 navigate('/Profile')
                 

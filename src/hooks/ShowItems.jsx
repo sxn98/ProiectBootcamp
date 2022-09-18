@@ -3,8 +3,10 @@ import {getItems} from '../utils/getItems';
 import DeleteItem from '../utils/DeleteItem';
 import { StateContext,StateProvider } from '../routes/Items';
 import UpdateItem from '../utils/UpdateItem';
+import { useNavigate } from 'react-router-dom';
 
  const ShowItems=()=>{
+    const navigate=useNavigate()
     const containLetter=/[a-zA-Z]/g
     const[formHidden,setFormHidden]=useState(true)
     const[data,setData]=useState("");
@@ -26,17 +28,13 @@ import UpdateItem from '../utils/UpdateItem';
             setData(itemetrimise)
             
         })
+        
+        if(!localStorage.getItem('user-info')){
+            console.log('')
+            navigate('/')
+        }
         //console.log(schimbat)
     },[schimbat,actualizat])
-   /*() getItems().then(async itemetrimise=>{
-
-        if(!data){
-            setData(await itemetrimise)
-
-           
-        }
-        
-    })*/
 
     const Actualizare=async ()=>{
         if(containLetter.test(cantitate)){
