@@ -14,7 +14,7 @@ async function BuyItem(idWishlist,idItem,idBuyer,arrayBuyers){
             idBuyer
         ]
     }
-    //console.log(dateTrimise)
+    
     const rezultat= await axios.put(`http://ec2-18-217-234-99.us-east-2.compute.amazonaws.com:8080/v1/wishlists/${idWishlist}/items/${idItem}/buy`,dateTrimise,{
         headers:{
             'Authorization':`Bearer ${localStorage.getItem('user-info')}`

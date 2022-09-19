@@ -6,7 +6,7 @@ async function getWishlistSearch(search){
             'Authorization':`Bearer ${localStorage.getItem('user-info')}`
         }
     })
-   // console.log(rezultat.data)
+
 
    return rezultat.data.wishlists
    

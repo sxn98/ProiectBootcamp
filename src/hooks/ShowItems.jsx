@@ -21,7 +21,7 @@ import { useNavigate } from 'react-router-dom';
     const[idItemSchimbat,setIdItemSchimbat]=useState("")
     let[actualizat,setActualizat]=useState(0)
     const[mesaj,setMesaj]=useState("")
-   // console.log(schimbat)
+
 
     useEffect(()=>{
         getItems().then(itemetrimise=>{
@@ -33,7 +33,7 @@ import { useNavigate } from 'react-router-dom';
             console.log('')
             navigate('/')
         }
-        //console.log(schimbat)
+
     },[schimbat,actualizat])
 
     const Actualizare=async ()=>{
@@ -41,7 +41,6 @@ import { useNavigate } from 'react-router-dom';
             setMesaj(`Campul "Cantitate" nu trebuie sa contina litere!`)
         }else{
             await UpdateItem(numeItem,detalii,cantitate,marime,firma,model,adresaLink,idItemSchimbat)
-            console.log(idItemSchimbat)
             setFormHidden(true)
             setActualizat(actualizat+1)
         }

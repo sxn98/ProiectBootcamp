@@ -1,7 +1,7 @@
 import { useState,useContext,useEffect } from 'react'
 import { WishlistStateContext } from '../routes/WishLists';
 import getWishlistItems from '../utils/getWishlistItems';
-import {getItemsSearch} from '../utils/getItems';
+import {getItems, getItemsSearch} from '../utils/getItems';
 import AddItemToWishlist from '../utils/AddItemToWishlist';
 import DeleteWishlistItem from '../utils/DeleteWishlistItem';
 import '../css/Wishlists.css'
@@ -12,12 +12,13 @@ const ShowWishlistsItems=()=>{
     const[dateWishlist,setDateWishlist]=useState("")
     const[itemsID,setItemsID]=useState("")
     const[numeItem,setNumeItem]=useState("")
+    const[inventar,setInventar]=useState("")
     const[mesaj,setMesaj]=useState("")
 
     const ItemAdaugat=()=>{
         getItemsSearch(numeItem).then(itemTrimis=>{
             if(itemTrimis.length>0 ){
-                //console.log(dateWishlist,itemsID,itemTrimis[0].id)
+                
                 AddItemToWishlist(dateWishlist,itemsID,itemTrimis[0].id).then(rezultat=>{
                     if(rezultat==0){
                         setMesaj(`Itemul "${numeItem}" exista deja in wishlist`)
@@ -40,7 +41,8 @@ const ShowWishlistsItems=()=>{
         if(wishlistSelectat.length>0){
             getWishlistItems(wishlistSelectat).then(itemeTrimise=>{
                 setDataItem(itemeTrimise[0].items)
-                //console.log(itemeTrimise[0]?.items[0]?.item)
+                
+                
                 setDateWishlist({
                     id:itemeTrimise[0].id,
                     name:itemeTrimise[0].name,
@@ -52,33 +54,46 @@ const ShowWishlistsItems=()=>{
                     arrayID.push(itemeTrimise[0].items[i].item.id)
                 }
                 setItemsID(arrayID)
-                //console.log(arrayID)
-                //console.log(itemeTrimise)
-                //console.log(itemeTrimise[0].id,itemeTrimise[0].details)
+               
+            })
+            getItems().then(totalIteme=>{
+                setInventar(totalIteme)
             })
         }
     },[wishlistSelectat,mesaj])
 
 
     let rows=[]
+    let altrow=[]
     if(dataItem){
-        //console.log(dataItem)
+        
         for(let i=0;i< dataItem.length;i++){       
             rows.push(
                 <tr key={i}>
-                    <th>{dataItem[i].item.name}</th>
+                    <td>{dataItem[i].item.name}</td>
+                    <td>{dataItem[i].item.details}</td>
+                    <td>{dataItem[i].item.model}</td>
+                    <td>{dataItem[i].item.maker}</td>
+                    <td>{dataItem[i].item.size}</td>
+                    <td>{dataItem[i].item.link}</td>
+                    <td>{dataItem[i].item.quantity}</td>
                     
                     <td><button onClick={async (e)=>{
                     await DeleteWishlistItem(dateWishlist,itemsID,dataItem[i].item.id)
                     setDataItem(dataItem.filter(eliminat=>{
-                       // console.log(eliminat.item.id)
-                        //console.log(dataItem[i].item.id)
+                       
                         return eliminat.item.id!==dataItem[i].item.id
                     }))
-                    }}>Sterge</button></td>
+                    }}>Elimina</button></td>
                 </tr>
             )
+            
         }
+    }
+    for(let j=0;j<inventar.length;j++){
+        altrow.push(
+            <option key={j}>{inventar[j].name}</option>
+        )
     }
     
    
@@ -96,6 +111,12 @@ const ShowWishlistsItems=()=>{
 
                     <tr>
                         <th>Nume item</th>
+                        <th>Detalii</th>
+                        <th>Firma</th>
+                        <th>Model</th>
+                        <th>Marime</th>
+                        <th>Link</th>
+                        <th>Cantitate</th>
                     </tr>
 
                 {rows}
@@ -104,11 +125,15 @@ const ShowWishlistsItems=()=>{
 
             <div className='adaugare'>
                 <label> Adaugare item nou din inventar</label>
-                <input type="text" placeholder='nume item' onChange={(e)=>setNumeItem(e.target.value)}></input>
+               
+                <input list="elemente" placeholder='selectati item' onChange={(e)=>setNumeItem(e.target.value)}></input>
+                    <datalist id="elemente">
+                        {altrow}
+                    </datalist>
                 <button onClick={()=>{ItemAdaugat()}}>Adauga item in wishlist</button>
                 <label>{mesaj}</label>
             </div>
-
+        
         </div> 
         )
     }

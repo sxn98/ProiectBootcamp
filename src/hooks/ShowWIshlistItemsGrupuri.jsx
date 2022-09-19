@@ -45,11 +45,11 @@ const ShowWishlistsItemsGrupuri=(dateGrup)=>{
             
             getGrupuriSearch(dateGrup.value[1].grup).then(itemeTrimise=>{
                 
-                //console.log(itemeTrimise[0].wishlists)
+        
                 for(let i=0;i<itemeTrimise[0].wishlists.length;i++){
                     if(itemeTrimise[0].wishlists[i].name===wishlistSelectat){
                         
-                        //console.log(itemeTrimise[0].wishlists[i].id)
+                   
                         setDataItem(itemeTrimise[0].wishlists[i].items)
                         
                         
@@ -77,8 +77,7 @@ const ShowWishlistsItemsGrupuri=(dateGrup)=>{
 
     let rows=[]
     if(dataItem){
-        //console.log(dataItem[1].item.name)
-        //console.log(dataItem)
+     
         for(let i=0;i< dataItem.length;i++){
             
            

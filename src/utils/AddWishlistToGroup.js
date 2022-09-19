@@ -5,7 +5,7 @@ export async function AddWishlistToGroup(grupID,idwishlists,idWishlistAdaugat){
         return 0
     }
 
-    //console.log(grupID,idwishlists,idWishlistAdaugat)
+
 
     const dateTrimise={
         wishlistIds:[idWishlistAdaugat]
@@ -16,7 +16,7 @@ export async function AddWishlistToGroup(grupID,idwishlists,idWishlistAdaugat){
             'Authorization':`Bearer ${localStorage.getItem('user-info')}`
         }
     })
-    //console.log(rezultat)
+  
     return rezultat.data 
     
 }

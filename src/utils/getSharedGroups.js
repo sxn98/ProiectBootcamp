@@ -6,7 +6,7 @@ export async function getSharedGroups(){
             'Authorization':`Bearer ${localStorage.getItem('user-info')}`
         }
     })
-    //console.log(rezultat.data.groups)
+
 
    return rezultat.data.groups
    

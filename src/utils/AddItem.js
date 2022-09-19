@@ -1,6 +1,7 @@
 import axios from "axios";
 
  async function AdaugaItem(nume,detalii,cantitate,marime,firma,model,adresa){
+
     let datetrimise={
         name:nume,
         details:detalii,
@@ -11,7 +12,7 @@ import axios from "axios";
         link:adresa
     }
 
-
+    console.log(datetrimise)
     
     await axios.post('http://ec2-18-217-234-99.us-east-2.compute.amazonaws.com:8080/v1/items',datetrimise,{
         headers:{
@@ -22,7 +23,7 @@ import axios from "axios";
  
     }).catch(err=>{
         console.log(err.message)
-        //setEroare("Email or password is in a wrong format")
+      
         
     })
 

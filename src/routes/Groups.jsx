@@ -21,7 +21,7 @@ const Groups=()=>{
         AddGroup(numeGrup,detalii).then(grupCreat=>{
             console.log(grupCreat)
             AddUser(grupCreat.id,grupCreat.ownerId).then(rezultat=>{
-                console.log(rezultat)
+               
                 setMesaj(`Ati creat grupul ${numeGrup}!`)
                 setSchimbat(schimbat+1)
             })
@@ -34,7 +34,7 @@ const Groups=()=>{
         <StateContextGrup.Provider value={[schimbat]}>
 
         <div className="grup">  
-
+        <label>Pentru a viziona un grup, faceti click pe numele lui</label>
             <ShowGroups/>
 
             <div className='adaugareGrup'>

@@ -22,15 +22,15 @@ const UsersGroup=()=>{
     useEffect(()=>{
         getMe().then(eu=>{
             setUserCurent(eu.id) 
-            //console.log('eu sunt '+eu.id)
+            
             getGrupuriSearch(grupCurent.grup).then(owner=>{
                 setOwnerGrup(owner[0].Group.ownerId) 
                 setIdGrup(owner[0].groupId)
-                //console.log('ownerul e '+owner[0].Group.ownerId)
+                
     
                 if(owner[0].Group.ownerId===eu.id){
                     setIsOwnerOfGroup(true)
-                    //console.log(isOwnerOfGroup)
+                    
              
                 }
                 
@@ -45,8 +45,7 @@ const UsersGroup=()=>{
     }
 
 
-    //console.log(handleClick)
-    //console.log(ownerGrup,userCurent)
+
 
 
     return(

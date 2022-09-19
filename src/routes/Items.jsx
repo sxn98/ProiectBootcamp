@@ -7,9 +7,10 @@ export const StateContext=createContext();
 
 const Items=()=>{
 
+    const containLetter=/[a-zA-Z]/g
     const[numeitem,setNumeitem]=useState("")
     const[detalii,setDetalii]=useState("")
-    const[cantitate,setCantitate]=useState("")
+    const[cantitate,setCantitate]=useState()
     const[marime,setMarime]=useState("")
     const[firma,setFirma]=useState("")
     const[model,setModel]=useState("")
@@ -18,11 +19,14 @@ const Items=()=>{
     let[schimbat,setSchimbat]=useState(0)
 
     const itemAdaugat=async ()=>{
-        await AdaugaItem(numeitem,detalii,cantitate,marime,firma,model,adresa)
-        setMesaj(`Ati adaugat ${numeitem}!`)
-        //window.location.reload(false)
-        setSchimbat(schimbat+1)
-        console.log(schimbat)
+        if(containLetter.test(cantitate)){
+            setMesaj(`Campul "Cantitate" nu trebuie sa contina litere!`)
+        }else{
+            await AdaugaItem(numeitem,detalii,cantitate,marime,firma,model,adresa)
+            setMesaj(`Ati adaugat ${numeitem}!`)
+            setSchimbat(schimbat+1)
+        }
+       
     }
 
 

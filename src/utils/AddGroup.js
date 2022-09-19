@@ -6,7 +6,7 @@ async function AddGroup(nume,detalii){
         details:detalii
     }
 
-    console.log(datetrimise)
+
     const rezultat= await axios.post('http://ec2-18-217-234-99.us-east-2.compute.amazonaws.com:8080/v1/groups',datetrimise,{
         headers:{
             'Authorization':`Bearer ${localStorage.getItem('user-info')}`

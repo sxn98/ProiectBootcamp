@@ -4,6 +4,7 @@ import getMe from '../utils/getMe';
 import UpdateMe from '../utils/UpdateMe';
 const Profile=()=>{
 
+    const containLetter=/[a-zA-Z]/g
     const[name,setName]=useState("")
     const[phone,setPhone]=useState("")
     const[dob,setDob]=useState("")
@@ -13,7 +14,7 @@ const Profile=()=>{
     const[country,setCountry]=useState("")
     const[isHidden,setIsHidden]=useState("true")
     let[update,setUpdate]=useState(0)
-
+    const[mesaj,setMesaj]=useState("")
     useEffect(()=>{
         getMe().then(eu=>{
            
@@ -29,9 +30,14 @@ const Profile=()=>{
     },[update])
 
     const Actualizare=async ()=>{
-        await UpdateMe(name,phone,dob,city,street,zip,country)
-        setIsHidden(true)
-        setUpdate(update+1)
+        if(containLetter.test(phone)){
+            setMesaj(`Campul "Phone" nu trebuie sa contina litere!`)
+        }else{
+            await UpdateMe(name,phone,dob,city,street,zip,country)
+            setIsHidden(true)
+            setUpdate(update+1)
+        }
+
        
         
     }
@@ -48,6 +54,7 @@ const Profile=()=>{
                 <input value={phone} onChange={(e)=>{setPhone(e.target.value);setIsHidden(false)}}></input>
                 <label>Date of Birth</label>
                 <input value={dob.substring(0,10)} onChange={(e)=>{setDob(e.target.value);setIsHidden(false)}}></input>
+                <label>{mesaj}</label>
             </div>
             <div className='adresa'>
                 <label>City</label>
@@ -61,6 +68,7 @@ const Profile=()=>{
             </div>
             
             <button className={isHidden? "hidden":"visible"} onClick={(e)=>{Actualizare()}}>save</button>
+            
         </div>
     )
 

@@ -16,7 +16,7 @@ const Login=()=>{
                 setEroare(String(response.data.errors))
             }else{
                 setEroare("")
-                //console.log(response)
+                
                 localStorage.setItem("user-info",response.data.token)
                 navigate('/Profile')
                 

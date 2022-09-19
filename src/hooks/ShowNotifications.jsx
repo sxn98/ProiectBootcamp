@@ -12,7 +12,7 @@ const ShowNotifications=()=>{
     const[yesterday,setYesterday]=useState(timeLimit)
     const[dataNotificari,setDataNotificari]=useState("")
 
-   // console.log(timeLimit)
+
     useEffect(()=>{
         getNotifications().then(notificari=>{
             setDataNotificari(notificari)
@@ -33,7 +33,6 @@ const ShowNotifications=()=>{
         notificationDay=notificationDay.toISOString().slice(0,10)
 
         if(notificationDay>=yesterday){
-            //console.log(dataNotificari[i].createdAt.substring(0,10),notificationDay,yesterday)
             rows.push(
                 <tr key={dataNotificari[i].id}>
                     <td>{dataNotificari[i].category}</td>

@@ -9,7 +9,7 @@ const ShowUsers=(dateGrup)=>{
     let inputAdaugarePersoana=[]
     const navigate=useNavigate()
 
-   // console.log(dateGrup.value[0])
+
 
     const[Owner,setOwner]=useState(dateGrup.value[2])
     const[dataUsers,setDataUsers]=useState("");
@@ -21,7 +21,7 @@ const ShowUsers=(dateGrup)=>{
     const AdaugareUser= ()=>{
          getUsers(numeUser).then(idTrimis=>{
             AddUser(dateGrup.value[0],idTrimis[0]?.id).then(rezultat=>{
-                //console.log(rezultat)
+          
                 if(rezultat){
                     setMesaj(`ati adaugat userul pe nume "${numeUser}"`)
                 }
@@ -29,7 +29,7 @@ const ShowUsers=(dateGrup)=>{
             
         })
 
-        //setMesaj(`Ati adaugat ${numeUser}!`)
+
     }
     const StergereGrup=(idGrupSters)=>{
         DeleteGroup(idGrupSters)
@@ -37,7 +37,7 @@ const ShowUsers=(dateGrup)=>{
     }
     useEffect(()=>{
         getGrupuriSearch(grupName).then(participanti=>{
-           // console.log(participanti[0].users)
+
             setDataUsers(participanti[0].users)    
         })
         
@@ -47,9 +47,9 @@ const ShowUsers=(dateGrup)=>{
     }
         },[mesaj])
     
-        //console.log(dateGrup.value[3])
+
         for(let i=0;i<dataUsers.length;i++){
-           //console.log(dateGrup.value[2],dataUsers[i].id)
+
            if(dateGrup.value[2]==dataUsers[i].id){
             rows.push(
                 <tr key={dataUsers[i].id}>
@@ -85,7 +85,7 @@ const ShowUsers=(dateGrup)=>{
             <table className="tabelusersgrup">
                 <tbody>
                     <tr>
-                        <th> Participantii grupului {dateGrup.value[1].grup}</th>
+                        <th> Participantii grupului "{dateGrup.value[1].grup}"</th>
                             
                     </tr>
 

@@ -6,7 +6,7 @@ export async function getGrupuri(){
             'Authorization':`Bearer ${localStorage.getItem('user-info')}`
         }
     })
-    //console.log(rezultat.data.groups)
+
 
    return rezultat.data.groups
    
@@ -18,7 +18,7 @@ export async function getGrupuriSearch(search){
             'Authorization':`Bearer ${localStorage.getItem('user-info')}`
         }
     })
-    //console.log(rezultat.data.groups)
+
 
    return rezultat.data.groups
    

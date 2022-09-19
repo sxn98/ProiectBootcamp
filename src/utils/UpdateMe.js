@@ -20,6 +20,5 @@ async function UpdateMe(name,phone,dob,city,street,zip,country){
     })
 
     
-  // return rezultat.data.users
    
 }export default UpdateMe;

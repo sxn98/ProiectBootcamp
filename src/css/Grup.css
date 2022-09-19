@@ -1,7 +1,7 @@
 .grup {
     margin: auto;
     margin-top: 1em;
-    width: 300px;
+    width: 450px;
     height: 100%;
     background-color: hsla(177, 70%, 41%, 0.75);
     padding: 15px;
@@ -10,8 +10,11 @@
     align-items: center;
     flex-direction: column;
     
-    
+
   }
+.grup th:hover{
+  background-color:rgb(190, 246, 237)
+}
   td,th{
     border: 1px solid black;
     padding: 8px;
@@ -19,7 +22,7 @@
   .tabelgrup{
     /*background-color: red;*/
     border-collapse: collapse;
-    width: 300px;
+    width: 100%px;
   }
   .adaugareGrup{
     padding: 20px;

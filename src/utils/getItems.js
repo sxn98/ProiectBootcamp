@@ -8,7 +8,7 @@ export async function getItems(){
     })
     
 
-   // return rezultat.data.results.map(obiect=>obiect.name)
+
    return rezultat.data.items
    
 }
