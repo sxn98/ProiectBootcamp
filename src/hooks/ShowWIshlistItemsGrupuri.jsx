@@ -84,7 +84,13 @@ const ShowWishlistsItemsGrupuri=(dateGrup)=>{
             rows.push(
                 <tr key={i}>
                     <td onClick={(e)=>{ItemCumparat(dataItem[i].name)}}>{dataItem[i].name}</td>
-                    
+
+                    <td>{dataItem[i].details}</td>
+                    <td>{dataItem[i].maker}</td>
+                    <td>{dataItem[i].model}</td>
+                    <td>{dataItem[i].size}</td>
+                    <td>{dataItem[i].link}</td>
+                    <td>{dataItem[i].quantity}</td>
                     <td>{dataItem[i].buyers[0]?.name}</td>
                 </tr>
             )
@@ -105,6 +111,12 @@ const ShowWishlistsItemsGrupuri=(dateGrup)=>{
                     </tr>
                     <tr>
                         <th>Nume item</th>
+                        <th>Detalii</th>
+                        <th>Marca</th>
+                        <th>Model</th>
+                        <th>Marime</th>
+                        <th>Link</th>
+                        <th>Cantitate</th>
                         <th>Cumparator</th>
                     </tr>
                 {rows}
